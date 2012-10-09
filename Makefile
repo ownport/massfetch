@@ -22,4 +22,7 @@ todo:
 	@ echo 
 	@ awk '/# TODO/ { gsub(/^ /, ""); print }' massfetch.py
 	@ echo 
+
+graph:
+	@ dot -T png docs/massfetch-flow.gv -o docs/massfetch-flow.png && eog docs/massfetch-flow.png
 	
