@@ -1,0 +1,18 @@
+digraph massfetch_flow {
+
+    node [shape=record,fontname=Arial,fontsize=9];
+    edge [arrowsize=0.5,fontname=Arial,fontsize=9];
+
+    // Nodes
+    urls;
+    json;
+    kvlite_db;
+    massfetch;
+
+    // Links
+    urls -> kvlite_db;
+    json -> kvlite_db;
+    kvlite_db -> massfetch;
+    massfetch -> kvlite_db;
+
+}
