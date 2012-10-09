@@ -49,15 +49,15 @@ Parameters:
 
 Configurations:
 
-- base_headers, Default HTTP headers.
-- max_redirects, Maximum number of redirects allowed within a request.s
-- keep_alive, Reuse HTTP Connections
-- max_retries, The number of times a request should be retried in the event of a connection failure.
-- pool_maxsize, The maximium size of an HTTP connection pool.
-- pool_connections: The number of active HTTP connection pools to use.
-- encode_uri, If true, URIs will automatically be percent-encoded.
-- trust_env, If true, the surrouding environment will be trusted (environ, netrc).
-- store_cookies, If false, the received cookies as part of the HTTP response would be ignored.
+- base_headers, Default HTTP headers. Default: {'Accept-Encoding': 'gzip, deflate, compress', 'Accept': '*/*', 'User-Agent': 'massfetch/x.x.x'}
+- max_redirects, Maximum number of redirects allowed within a request. Default: 30
+- keep_alive, Reuse HTTP Connections/ Default: True
+- max_retries, The number of times a request should be retried in the event of a connection failure. Default: 0
+- pool_maxsize, The maximium size of an HTTP connection pool. Default: 10
+- pool_connections: The number of active HTTP connection pools to use. Default: 10
+- encode_uri, If true, URIs will automatically be percent-encoded. Default: True
+- trust_env, If true, the surrouding environment will be trusted (environ, netrc). Default: True
+- store_cookies, If false, the received cookies as part of the HTTP response would be ignored. Default: True
 
 
 
