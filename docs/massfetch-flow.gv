@@ -1,18 +1,33 @@
 digraph massfetch_flow {
 
-    node [shape=record,fontname=Arial,fontsize=9];
-    edge [arrowsize=0.5,fontname=Arial,fontsize=9];
+    graph [ rankdir = "LR"];
+    node [shape=record,fontname=Arial,fontsize=9,style=filled];
+    edge [arrowsize=0.5,fontname=Arial,fontsize=9,penwidth=0.5];
 
     // Nodes
-    urls;
-    json;
-    kvlite_db;
-    massfetch;
+    urls [fillcolor=darkseagreen1];
+    json [fillcolor=darkseagreen1];
+    requests [fillcolor=darkolivegreen2];
+    kvlite_db [label="<top>container\n(kvlite database)|\
+                    request,headers,content|\
+                    request,headers,content|\
+                    ...|\
+                    request,headers,content",
+                    fillcolor=darkolivegreen3];
+
+    subgraph cluster_massfetch {
+        graph [style=dotted,fontname=Arial,fontsize=9,penwidth=0.5];
+        label="massfetch"
+        request_defaults [label="request defaults",fillcolor=darkkhaki];
+        massfetch [label="massfetch\nprocess",fillcolor=darkkhaki];
+        request_defaults -> massfetch;
+    };
 
     // Links
-    urls -> kvlite_db;
-    json -> kvlite_db;
-    kvlite_db -> massfetch;
-    massfetch -> kvlite_db;
+    urls -> requests;
+    json -> requests;
+    requests -> kvlite_db;
+    kvlite_db -> massfetch [label="request datails"];
+    massfetch -> kvlite_db [label="headers & response"];
 
 }
