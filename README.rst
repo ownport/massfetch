@@ -16,6 +16,7 @@ Requests interface
 To fetch HTTP content via massfetch you can use the list of URLs, or create container (kvlite database) with detail request parameters.
 
 The list of URLs:
+
     http://localhost:8080/page0001
     http://localhost:8080/page0002
     http://localhost:8080/page0003
@@ -35,6 +36,7 @@ The container is kvlite database with limited amount of records. Each record has
 The parameters for request
 
 Parameters:	
+
 - method,  HTTP method 
 - url, URL for the request.
 - params,  (optional) Dictionary or bytes to be sent in the query string.
