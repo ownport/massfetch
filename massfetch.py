@@ -84,7 +84,7 @@ class MassFetch(object):
             if url in self._processed_urls:
                 continue
         
-            response = requests.get(url)
+            response = requests.get(url, headers=self.base_headers)
             if not response:
                 print 'url: %s, status: %d' % (url, -1) # not available
                 continue
