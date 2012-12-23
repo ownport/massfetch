@@ -44,22 +44,6 @@ class MassFetch(object):
         'Accept': '*/*', 
         'User-Agent': 'massfetch/?'.format(__version__)
     }
-    # Maximum number of redirects allowed within a request
-    max_redirects = 10
-    # Reuse HTTP Connections
-    keep_alive = True
-    # The number of times a request should be retried in the event of a connection failure
-    max_retries = 0
-    # The maximium size of an HTTP connection pool
-    pool_maxsize = 10
-    # The number of active HTTP connection pools to use
-    pool_connections = 10
-    # If encode_uri is true, URIs will automatically be percent-encoded
-    encode_uri = True
-    # If trust_env is true, the surrouding environment will be trusted (environ, netrc)
-    trust_env = True
-    # If store_cookies is false, the received cookies as part of the HTTP response would be ignored.  
-    store_cookies = True
     
     # start_urls
     start_urls = list()
@@ -84,16 +68,6 @@ class MassFetch(object):
         self.urls_queue = list()
         self._processed_urls = list()
         
-        requests.defaults.defaults['pool_connections'] = self.pool_connections
-        requests.defaults.defaults['keep_alive'] = self.keep_alive
-        requests.defaults.defaults['max_retries'] = self.max_retries
-        requests.defaults.defaults['store_cookies'] = self.store_cookies
-        requests.defaults.defaults['trust_env'] = self.trust_env
-        requests.defaults.defaults['base_headers'] = self.base_headers
-        requests.defaults.defaults['pool_maxsize'] = self.pool_maxsize
-        requests.defaults.defaults['encode_uri'] = self.encode_uri
-        requests.defaults.defaults['max_redirects'] = self.max_redirects
-
     def parse(self, data):
         ''' this method can be overridden '''
         pass
