@@ -85,6 +85,8 @@ class MassFetch(object):
                 continue
         
             response = requests.get(url)
+            if not response:
+                print 'url: %s, status: %d' % (url, -1) # not available
             if response.status_code <> 200:
                 print 'url: %s, status: %d' % (url, response.status)
                 continue
