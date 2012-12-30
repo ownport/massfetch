@@ -33,7 +33,7 @@ import time
 import random
 import kvlite
 import hashlib
-import requests
+import simplefetch
 
 class MassFetch(object):
     ''' Mass fetch '''    
@@ -84,18 +84,18 @@ class MassFetch(object):
             if url in self._processed_urls:
                 continue
         
-            response = requests.get(url, headers=self.base_headers)
+            response = simplefetch.get(url, headers=self.base_headers)
             if not response:
                 print 'url: %s, status: %d' % (url, -1) # not available
                 continue
-            if response.status_code <> 200:
+            if response.status <> 200:
                 print 'url: %s, status: %d' % (url, response.status)
                 continue
             else:                
                 print url
                 data = {'headers': response.headers, 'content': response.content}
                 data['headers']['source_url'] = url
-                data['headers']['status_code'] = response.status_code
+                data['headers']['status_code'] = response.status
                 self._container.put(hashlib.sha1(url).hexdigest(), data)
                 self._container.commit()
                 
